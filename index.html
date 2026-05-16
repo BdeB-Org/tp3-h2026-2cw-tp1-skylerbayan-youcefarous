@@ -1,0 +1,77 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projet Commande - Accueil</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <h1>Projet Commande</h1>
+      <p class="subtitle">Application Web dynamique connectée à une API Oracle ORDS</p>
+    </div>
+    <nav>
+      <a href="index.html" class="active">Accueil</a>
+      <a href="clients.html">Clients</a>
+      <a href="produit.html">Produit</a>
+      <a href="colis.html">Colis</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="hero card">
+      <h2>Bienvenue</h2>
+      <p>
+        Ce projet illustre la structure attendue dans le TP3. Il repose sur le schéma <strong>commande</strong>
+        et consomme une API REST Oracle ORDS à partir du navigateur avec <code>fetch()</code>.
+      </p>
+      <div class="grid-2">
+        <div>
+          <h3>Fonctionnalités incluses</h3>
+          <ul>
+            <li>Consultation des clients</li>
+            <li>Consultation des produit</li>
+            <li>Consultation des paniers avec détails</li>
+            <li>Ajout et suppression sur certaines pages</li>
+          </ul>
+        </div>
+        <div>
+          <h3>Avant de démarrer</h3>
+          <ol>
+            <li>Créer la base Oracle avec le script SQL fourni</li>
+            <li>Activer ORDS sur le schéma et les tables</li>
+            <li>Vérifier les endpoints dans le navigateur</li>
+            <li>Ouvrir le dossier dans VS Code</li>
+            <li>Lancer avec Live Server</li>
+          </ol>
+        </div>
+      </div>
+      <div class="banner info">
+        <strong>Important :</strong> l’URL de base ORDS se modifie dans <code>js/api.js</code> à la constante <code>BASE_URL</code>.
+      </div>
+    </section>
+
+    <section class="grid-2">
+      <article class="card">
+        <h3>Pages du projet</h3>
+        <ul>
+          <li><strong>clients.html</strong> : liste, ajout, suppression</li>
+          <li><strong>produit.html</strong> : liste et recherche</li>
+          <li><strong>paniers.html</strong> : liste des paniers et des items associés</li>
+        </ul>
+      </article>
+      <article class="card">
+        <h3>Architecture</h3>
+        <p><strong>Frontend</strong> : HTML, CSS, JavaScript</p>
+        <p><strong>API</strong> : Oracle ORDS</p>
+        <p><strong>Base de données</strong> : schéma <code>commande</code></p>
+        <p><strong>Exécution</strong> : VS Code + Live Server</p>
+      </article>
+    </section>
+  </main>
+
+  <script src="js/shared.js"></script>
+</body>
+</html>

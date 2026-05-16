@@ -1,0 +1,78 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projet Commande - Paniers</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <h1>Gestion des paniers</h1>
+      <p class="subtitle">Consultation des paniers et de leurs items</p>
+    </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="clients.html">Clients</a>
+      <a href="produits.html">Produits</a>
+      <a href="utilisateurs.html">Utilisateurs</a>
+      <a href="paniers.html" class="active">Paniers</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="toolbar stack-mobile">
+        <h2>Liste des paniers</h2>
+        <div class="inline-controls">
+          <input type="number" id="filtre-panier-id" min="1" placeholder="ID du panier" />
+          <button id="reload-paniers">Actualiser</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID Panier</th>
+              <th>ID Client</th>
+              <th>ID Utilisateur</th>
+              <th>Date</th>
+              <th>Note</th>
+              <th>Détails</th>
+            </tr>
+          </thead>
+          <tbody id="paniers-body">
+            <tr><td colspan="6">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+
+    <section class="card">
+      <h2>Détails des items du panier sélectionné</h2>
+      <p id="items-title">Sélectionnez un panier pour voir ses items.</p>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID Item</th>
+              <th>ID Produit</th>
+              <th>Quantité</th>
+              <th>Prix</th>
+              <th>Escompte</th>
+            </tr>
+          </thead>
+          <tbody id="items-body">
+            <tr><td colspan="5">Aucun panier sélectionné.</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/paniers.js"></script>
+</body>
+</html>

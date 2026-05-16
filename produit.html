@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Projet Commande - Produits</title>
+  <link rel="stylesheet" href="css/style.css" />
+</head>
+<body>
+  <header class="site-header">
+    <div>
+      <h1>Catalogue des produits</h1>
+      <p class="subtitle">Consultation et filtrage</p>
+    </div>
+    <nav>
+      <a href="index.html">Accueil</a>
+      <a href="clients.html">Clients</a>
+      <a href="produits.html" class="active">Produits</a>
+      <a href="utilisateurs.html">Utilisateurs</a>
+      <a href="paniers.html">Paniers</a>
+    </nav>
+  </header>
+
+  <main class="container">
+    <section class="card">
+      <div class="toolbar stack-mobile">
+        <h2>Liste des produits</h2>
+        <div class="inline-controls">
+          <input type="search" id="search-produits" placeholder="Rechercher un produit..." />
+          <button id="reload-produits">Actualiser</button>
+        </div>
+      </div>
+      <div class="table-wrapper">
+        <table>
+          <thead>
+            <tr>
+              <th>ID</th>
+              <th>Nom</th>
+              <th>Prix</th>
+              <th>Coût</th>
+              <th>Stock</th>
+              <th>Catégorie</th>
+            </tr>
+          </thead>
+          <tbody id="produits-body">
+            <tr><td colspan="6">Chargement...</td></tr>
+          </tbody>
+        </table>
+      </div>
+    </section>
+  </main>
+
+  <script src="js/api.js"></script>
+  <script src="js/shared.js"></script>
+  <script src="js/produits.js"></script>
+</body>
+</html>
