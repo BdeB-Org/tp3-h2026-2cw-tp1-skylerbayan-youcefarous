@@ -3,76 +3,72 @@
 <head>
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-  <title>Projet Commande - Paniers</title>
+  <title>Projet Commande - Catégories</title>
   <link rel="stylesheet" href="css/style.css" />
 </head>
 <body>
   <header class="site-header">
     <div>
-      <h1>Gestion des paniers</h1>
-      <p class="subtitle">Consultation des paniers et de leurs items</p>
+      <h1>Gestion des catégories</h1>
+      <p class="subtitle">Consultation des catégories et de leurs produits</p>
     </div>
     <nav>
-      <a href="index.html" class="active">Accueil</a>
+      <a href="index.html">Accueil</a>
       <a href="clients.html">Clients</a>
       <a href="produit.html">Produit</a>
       <a href="colis.html">Colis</a>
-      <a href="categorie.html">Categorie</a>
+      <a href="categorie.html" class="active">Categorie</a>
     </nav>
   </header>
-
   <main class="container">
     <section class="card">
       <div class="toolbar stack-mobile">
-        <h2>Liste des paniers</h2>
+        <h2>Liste des catégories</h2>
         <div class="inline-controls">
-          <input type="number" id="filtre-panier-id" min="1" placeholder="ID du panier" />
-          <button id="reload-paniers">Actualiser</button>
+          <input type="number" id="filtre-categorie-id" min="1" placeholder="ID de la catégorie" />
+          <button id="reload-categorie">Actualiser</button>
         </div>
       </div>
       <div class="table-wrapper">
         <table>
           <thead>
             <tr>
-              <th>ID Panier</th>
-              <th>ID Client</th>
-              <th>ID Utilisateur</th>
-              <th>Date</th>
-              <th>Note</th>
-              <th>Détails</th>
+              <th>ID Catégorie</th>
+              <th>Nom</th>
+              <th>Nb Produits</th>
+              <th>Date de création</th>
+              <th>Actions</th>
             </tr>
           </thead>
-          <tbody id="paniers-body">
-            <tr><td colspan="6">Chargement...</td></tr>
+          <tbody id="categorie-body">
+            <tr><td colspan="5">Chargement...</td></tr>
           </tbody>
         </table>
       </div>
     </section>
-
     <section class="card">
-      <h2>Détails des items du panier sélectionné</h2>
-      <p id="items-title">Sélectionnez un panier pour voir ses items.</p>
+      <h2>Produits de la catégorie sélectionnée</h2>
+      <p id="produit-title">Sélectionnez une catégorie pour voir ses produits.</p>
       <div class="table-wrapper">
         <table>
           <thead>
             <tr>
-              <th>ID Item</th>
               <th>ID Produit</th>
-              <th>Quantité</th>
+              <th>Nom</th>
               <th>Prix</th>
-              <th>Escompte</th>
+              <th>Rabais</th>
+              <th>Quantité</th>
             </tr>
           </thead>
-          <tbody id="items-body">
-            <tr><td colspan="5">Aucun panier sélectionné.</td></tr>
+          <tbody id="produit-body">
+            <tr><td colspan="5">Aucune catégorie sélectionnée.</td></tr>
           </tbody>
         </table>
       </div>
     </section>
   </main>
-
   <script src="js/api.js"></script>
   <script src="js/shared.js"></script>
-  <script src="js/paniers.js"></script>
+  <script src="js/categorie.js"></script>
 </body>
 </html>

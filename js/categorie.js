@@ -1,73 +1,70 @@
-const paniersBody = document.getElementById('paniers-body');
-const itemsBody = document.getElementById('items-body');
-const itemsTitle = document.getElementById('items-title');
-const reloadPaniersBtn = document.getElementById('reload-paniers');
-const filtrePanierId = document.getElementById('filtre-panier-id');
-let tousLesPaniers = [];
+const categorieBody = document.getElementById('categorie-body');
+const produitBody = document.getElementById('produit-body');
+const produitTitle = document.getElementById('produit-title');
+const reloadCategorieBtn = document.getElementById('reload-categorie');
+const filtreCategorieId = document.getElementById('filtre-categorie-id');
+let toutesLesCategories = [];
 
-function afficherPaniers(paniers) {
-  if (!paniers.length) {
-    paniersBody.innerHTML = '<tr><td colspan="6">Aucun panier trouvé.</td></tr>';
+function afficherCategories(categories) {
+  if (!categories.length) {
+    categorieBody.innerHTML = '<tr><td colspan="5">Aucune catégorie trouvée.</td></tr>';
     return;
   }
-
-  paniersBody.innerHTML = paniers.map(p => `
+  categorieBody.innerHTML = categories.map(c => `
     <tr>
-      <td>${escapeHtml(p.id_panier)}</td>
-      <td>${escapeHtml(p.id_client)}</td>
-      <td>${escapeHtml(p.id_utilisateur)}</td>
-      <td>${escapeHtml(p.date_creation)}</td>
-      <td>${escapeHtml(p.note)}</td>
-      <td><button onclick="voirItems(${p.id_panier})">Voir les items</button></td>
+      <td>${escapeHtml(String(c.id_categorie))}</td>
+      <td>${escapeHtml(c.nom_categorie)}</td>
+      <td>${escapeHtml(String(c.nb_produits))}</td>
+      <td>${formatDate(c.date_creation)}</td>
+      <td><button onclick="voirProduits(${c.id_categorie})">Voir les produits</button></td>
     </tr>
   `).join('');
 }
 
-async function chargerPaniers() {
-  paniersBody.innerHTML = '<tr><td colspan="6">Chargement...</td></tr>';
+async function chargerCategories() {
+  categorieBody.innerHTML = '<tr><td colspan="5">Chargement...</td></tr>';
   try {
-    tousLesPaniers = await getAll('panier'); 
+    toutesLesCategories = await getAll('categorie');
     appliquerFiltre();
   } catch (error) {
-    paniersBody.innerHTML = `<tr><td colspan="6">${escapeHtml(error.message)}</td></tr>`;
+    categorieBody.innerHTML = `<tr><td colspan="5">${escapeHtml(error.message)}</td></tr>`;
   }
 }
 
 function appliquerFiltre() {
-  const id = filtrePanierId.value.trim();
+  const id = filtreCategorieId.value.trim();
   if (!id) {
-    afficherPaniers(tousLesPaniers);
+    afficherCategories(toutesLesCategories);
     return;
   }
-
-  const filtres = tousLesPaniers.filter(p => String(p.id_panier) === id);
-  afficherPaniers(filtres);
+  const filtres = toutesLesCategories.filter(c => String(c.id_categorie) === id);
+  afficherCategories(filtres);
 }
 
-async function voirItems(idPanier) {
-  itemsTitle.textContent = `Items du panier ${idPanier}`;
-  itemsBody.innerHTML = '<tr><td colspan="5">Chargement...</td></tr>';
+async function voirProduits(idCategorie) {
+  produitTitle.textContent = `Produits de la catégorie ${idCategorie}`;
+  produitBody.innerHTML = '<tr><td colspan="5">Chargement...</td></tr>';
   try {
-    const items = await getItemsByPanier(idPanier);
-    if (!items.length) {
-      itemsBody.innerHTML = '<tr><td colspan="5">Aucun item trouvé pour ce panier.</td></tr>';
+    const tous = await getAll('produit');
+    const produits = tous.filter(p => Number(p.id_categorie) === Number(idCategorie));
+    if (!produits.length) {
+      produitBody.innerHTML = '<tr><td colspan="5">Aucun produit trouvé pour cette catégorie.</td></tr>';
       return;
     }
-
-    itemsBody.innerHTML = items.map(item => `
+    produitBody.innerHTML = produits.map(p => `
       <tr>
-        <td>${escapeHtml(item.id_item)}</td>
-        <td>${escapeHtml(item.id_produit)}</td>
-        <td>${escapeHtml(item.qte_commande)}</td>
-        <td>${formatMoney(item.prix)}</td>
-        <td>${escapeHtml(item.escompte)}</td>
+        <td>${escapeHtml(String(p.id_produit))}</td>
+        <td>${escapeHtml(p.nom_produit)}</td>
+        <td>${formatMoney(p.prix)}</td>
+        <td>${escapeHtml(String(p.rabais))}%</td>
+        <td>${escapeHtml(String(p.quantite))}</td>
       </tr>
     `).join('');
   } catch (error) {
-    itemsBody.innerHTML = `<tr><td colspan="5">${escapeHtml(error.message)}</td></tr>`;
+    produitBody.innerHTML = `<tr><td colspan="5">${escapeHtml(error.message)}</td></tr>`;
   }
 }
 
-reloadPaniersBtn.addEventListener('click', chargerPaniers);
-filtrePanierId.addEventListener('input', appliquerFiltre);
-chargerPaniers();
+reloadCategorieBtn.addEventListener('click', chargerCategories);
+filtreCategorieId.addEventListener('input', appliquerFiltre);
+chargerCategories();

@@ -46,7 +46,7 @@ async function remove(table, id) {
   }).then(handleResponse);
 }
 
-async function getItemsByPanier(idPanier) {
-  const items = await getAll('item');
-  return items.filter(item => Number(item.id_panier) === Number(idPanier));
+async function getItemsByColis(idColis) {
+  const items = await getAll('produit');
+  return items.filter(item => Number(item.id_colis) === Number(idColis));
 }
